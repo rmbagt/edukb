@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { IoCloseSharp, IoMenu } from "react-icons/io5";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { MdLogout } from "react-icons/md";
+import { MdKeyboardArrowDown, MdLogout } from "react-icons/md";
 import { ModeToggle } from "./mode-toggle";
 
 export default function Navbar() {
@@ -31,29 +31,20 @@ export default function Navbar() {
             <div className="flex w-full flex-col gap-6 bg-white p-10 shadow-lg dark:bg-gray-700">
               <div className="flex items-center justify-between">
                 <Link href="#" className="font-bold md:text-[24px]">
-                  Logo
+                  <Image
+                    src="/logo/logo-text.png"
+                    alt="profile"
+                    className="h- aspect-video overflow-hidden rounded-full"
+                    width={100}
+                    height={100}
+                  />
                 </Link>
                 <IoCloseSharp
                   className="text-2xl"
                   onClick={() => setIsOpen(false)}
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/fern.jpg"
-                    alt="profile"
-                    className="h-[24px] w-[24px] overflow-hidden rounded-full"
-                    width={24}
-                    height={24}
-                  />
-                  <p className="text-[16px] font-semibold">User</p>
-                </div>
-                <div className="flex items-center gap-2 text-[16px] font-semibold text-red-600 hover:cursor-pointer">
-                  <MdLogout />
-                  <p>Logout</p>
-                </div>
-              </div>
+              <div className="flex items-center justify-between"></div>
               <div className="flex w-full items-center justify-center gap-4">
                 <Input
                   placeholder="Search..."
@@ -61,9 +52,6 @@ export default function Navbar() {
                   className="w-3/4 rounded-xl border px-2 outline-none"
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <div className="md:hidden">
-                  <ModeToggle />
-                </div>
               </div>
             </div>
           </div>
@@ -71,11 +59,30 @@ export default function Navbar() {
       )}
       <div className="flex w-full items-center justify-between gap-6 border-b bg-white px-4 py-2 dark:bg-gray-800">
         <Link href="#" className="font-bold md:text-[24px]">
-          Logo
+          <Image
+            src="/logo/logo-text.png"
+            alt="profile"
+            className="h- aspect-video overflow-hidden rounded-full"
+            width={200}
+            height={200}
+          />
         </Link>
-        <div className="flex items-center gap-4">
-          <div className="hidden md:block">
-            <ModeToggle />
+        <div className="flex w-full items-center justify-between gap-4">
+          <div className="relative hidden items-center justify-center gap-1 md:flex md:gap-2">
+            <ul className="flex gap-4">
+              <li className="flex items-center gap-1">
+                <p className="font-semibold">Informasi tambahan</p>
+                <MdKeyboardArrowDown />
+              </li>
+              <li className="flex items-center gap-1">
+                <p className="font-semibold">Kunjungan ulang</p>
+                <MdKeyboardArrowDown />
+              </li>
+              <li className="flex items-center gap-1">
+                <p className="font-semibold">Kebutuhan khusus</p>
+                <MdKeyboardArrowDown />
+              </li>
+            </ul>
           </div>
           <div className="hidden md:block">
             <Input
@@ -84,33 +91,6 @@ export default function Navbar() {
               className="rounded-xl border px-2 outline-none"
               onChange={(e) => setSearch(e.target.value)}
             />
-          </div>
-          <div className="relative hidden items-center justify-center gap-1 md:flex md:gap-2">
-            <Image
-              src="/fern.jpg"
-              alt="profile"
-              className="h-[24px] w-[24px] overflow-hidden rounded-full"
-              width={24}
-              height={24}
-            />
-            <p className="text-[16px] font-semibold">User</p>
-            <div
-              className="hover:cursor-pointer"
-              onClick={() => setIsShow(!isShow)}
-            >
-              {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-            </div>
-            {isShow && (
-              <div className="absolute right-0 top-[45px] w-[200px] overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg dark:border-gray-600 dark:bg-gray-800">
-                <div
-                  onClick={handleLogout}
-                  className="flex items-center gap-2 px-4 py-2 text-[16px] font-semibold text-red-600 duration-300 hover:cursor-pointer hover:bg-[#F5F6F6] dark:hover:bg-gray-700"
-                >
-                  <MdLogout />
-                  <p>Logout</p>
-                </div>
-              </div>
-            )}
           </div>
         </div>
         <div className="block md:hidden">
